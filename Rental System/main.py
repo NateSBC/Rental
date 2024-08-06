@@ -1,5 +1,7 @@
 import datetime
 
+#Test Updating Code
+
 class Asset:
     def __init__(self, name, type):
         self.name = name
@@ -48,3 +50,5 @@ asset_manager.add_asset(Asset("IT Consultation", "service"))
 asset_manager.list_assets()
 asset_manager.rent_asset("Mouse", datetime.timedelta(days=1))
 asset_manager.list_assets()
+
+print("hello")
