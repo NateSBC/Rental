@@ -32,6 +32,7 @@ class AssetManager:
         self.next_id += 1  # Increment for next asset
         return new_asset
 
+
 asset_manager = AssetManager()
 laptop = asset_manager.create_asset("Laptop", "Hardware", datetime.date(2023, 7, 15), 4, True)
 office = asset_manager.create_asset("MS Office", "Software", datetime.date(2024, 1, 1), 3, True)  
@@ -39,7 +40,7 @@ office = asset_manager.create_asset("MS Office", "Software", datetime.date(2024,
 print("Available Assets:")
 for asset in asset_manager.assets:
     if asset.availability:
-        print(f"- {asset.name} (ID: {asset.asset_id})") # Show users the currently available assets 
+        print(f"- {asset.name} (ID: {asset.asset_id})")
 
 while True:
     asset_id_rent = input("Enter asset ID to rent (or 'q' to quit): ")
@@ -58,3 +59,5 @@ while True:
             print(f"Asset with ID {asset_id} not found.")
     except ValueError:
         print("Invalid input. Please enter a number or 'q' to quit.")
+
+
