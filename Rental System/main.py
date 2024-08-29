@@ -1,47 +1,18 @@
+"""Module providing a function printing python version."""
+
+from package.asset_manager import AssetManager
 import datetime
-
-class Asset:
-    def __init__(self, asset_id, name, type, purchase_date, asset_quantity, availability):
-        self.asset_id = None
-        self.name = name
-        self.type = type
-        self.purchase_date = purchase_date
-        self.asset_quantity = asset_quantity
-        self.availability = self.is_available()
-    
-    def is_available(self):
-        return self.asset_quantity > 0
-    
-    def rent(self):
-        if self.availability == True:
-            self.asset_quantity -= 1
-            self.availability = self.is_available()
-            print(f"{self.name} rented successfully!")
-        else:
-            print(f"Sorry, {self.name} is currently unavailable.")
-
-class AssetManager:
-    def __init__(self):
-        self.assets = []
-        self.next_id = 1
-
-    def create_asset(self, name, type, purchase_date, asset_quantity, availability):
-        new_asset = Asset(self.next_id, name, type, purchase_date, asset_quantity, True)  # Availability set to True by default
-        new_asset.asset_id = self.next_id
-        self.assets.append(new_asset)
-        self.next_id += 1  # Increment for next asset
-        return new_asset
 
 asset_manager = AssetManager()
 laptop = asset_manager.create_asset("Laptop", "Hardware", datetime.date(2023, 7, 15), 4, True)
-office = asset_manager.create_asset("MS Office", "Software", datetime.date(2024, 1, 1), 3, True)  
+office = asset_manager.create_asset("MS Office", "Software", datetime.date(2024, 1, 1), 3, True) 
+mouse = asset_manager.create_asset("Mouse", "Software", datetime.date(2024, 1, 1), 3, True)
 
-print("Available Assets:")
-for asset in asset_manager.assets:
-    if asset.availability:
-        print(f"- {asset.name} (ID: {asset.asset_id})") # Show users the currently available assets 
-
-while True:
+while True: # Loops and shows the available assets to the user (reduces each time one is selected)
+    print("Available Assets:")
+    for asset in asset_manager.assets:
+        if asset.availability:
+            print(f"{asset.asset_id}- {asset.name} (Quantity: {asset.asset_quantity})") # Show users the currently available assets 
     asset_id_rent = input("Enter asset ID to rent (or 'q' to quit): ")
     if asset_id_rent.lower() == 'q':
         break
